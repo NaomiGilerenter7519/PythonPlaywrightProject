@@ -34,4 +34,4 @@ def test_end_2_end(page: Page) -> None:
     page.locator("[data-test=\"back-to-products\"]").click()
     page.get_by_role("button", name="Open Menu").click()
     page.locator("[data-test=\"logout-sidebar-link\"]").click()
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(6000)
