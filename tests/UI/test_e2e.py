@@ -1,12 +1,12 @@
 import re
 from playwright.sync_api import Page, expect
+from tests.conftest import login_page
 
-
-def test_end_2_end(page: Page) -> None:
+def test_end_2_end(page: Page,login_page) -> None:
     page.goto("https://www.saucedemo.com/")
-    page.locator("[data-test=\"username\"]").fill("standard_user")
-    page.locator("[data-test=\"password\"]").fill("secret_sauce")
-    page.locator("[data-test=\"login-button\"]").click()
+
+    login_page.login_to_application("standard_user","secret_sauce")
+
     expect(page.locator("[data-test=\"shopping-cart-link\"]")).to_be_visible()
     page.locator("[data-test=\"add-to-cart-sauce-labs-bike-light\"]").click()
     page.locator("[data-test=\"add-to-cart-sauce-labs-backpack\"]").click()
