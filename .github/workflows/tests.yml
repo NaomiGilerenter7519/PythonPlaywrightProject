@@ -33,14 +33,22 @@ jobs:
     - name: Run Tests with Allure
       run: pytest -v --screenshot=on --browser=firefox --alluredir=allure-results
 
-    - name: List Allure Results Directory
-      run: ls -la allure-results
-
-    - uses: actions/upload-artifact@v4
+    - name: Upload Allure Results Artifact
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: allure-results
         path: allure-results/
+        retention-days: 30
+
+    - name: Get Allure history
+      uses: actions/checkout@v4
+      if: always()
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages
+
     - name: Generate Allure Report
       uses: simple-elf/allure-report-action@master
       if: always()
@@ -51,20 +59,8 @@ jobs:
 
     - name: Deploy report to Github Pages
       if: always()
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-    - name: Generate Allure Report
-      uses: simple-elf/allure-report-action@master
-      if: always()
-      with:
-        allure_results: allure-results
-
-    - name: Deploy report to Github Pages
-      if: always()
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: gh-pages
-        publish_dir: allure-report
+        publish_dir: allure-history
