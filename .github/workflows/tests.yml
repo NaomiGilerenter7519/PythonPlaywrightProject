@@ -33,12 +33,14 @@ jobs:
     - name: Run Tests with Allure
       run: pytest -v --screenshot=on --browser=firefox --alluredir=allure-results
 
-    - uses: actions/upload-artifact@v3
+    - name: List Allure Results Directory
+      run: ls -la allure-results
+
+    - uses: actions/upload-artifact@v2
       if: always()
       with:
-        name: test-results
-        path: test-results/
-        retention-days: 30
+        name: allure-results
+        path: allure-results/
 
     - name: Get Allure history
       uses: actions/checkout@v4
