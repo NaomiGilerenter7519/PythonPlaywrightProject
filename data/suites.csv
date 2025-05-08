@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","3606","Login with locked out","tests.UI","Thu May 08 08:20:57 GMT 2025","passed","Thu May 08 08:21:00 GMT 2025","","test_negative","",""
+"","5583","test_sanity_login[firefox]","tests.UI","Thu May 08 08:21:00 GMT 2025","passed","Thu May 08 08:21:06 GMT 2025","","test_sanity","",""
+"","7736","test_end_2_end[firefox]","tests.UI","Thu May 08 08:20:49 GMT 2025","passed","Thu May 08 08:20:56 GMT 2025","","test_e2e","",""
